@@ -32,6 +32,16 @@ void FmodEditorPlugin::_ready() {
       Variant::Type::INT
     );
     add_setting(
+      vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, FmodGeneralSettings::INITIALIZE_BASE_PATH, FmodGeneralSettings::REAL_CHANNEL_COUNT_OPTION),
+      FmodGeneralSettings::DEFAULT_REAL_CHANNEL_COUNT,
+      Variant::Type::INT
+    );
+    add_setting(
+      vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, FmodGeneralSettings::INITIALIZE_BASE_PATH, FmodGeneralSettings::PER_CODEC_CHANNEL_COUNT_OPTION),
+      FmodGeneralSettings::DEFAULT_PER_CODEC_CHANNEL_COUNT,
+      Variant::Type::INT
+    );
+    add_setting(
       vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, FmodGeneralSettings::INITIALIZE_BASE_PATH, FmodGeneralSettings::IS_LIVE_UPDATE_ENABLED_OPTION),
       FmodGeneralSettings::DEFAULT_IS_LIVEUPDATE,
       Variant::Type::BOOL

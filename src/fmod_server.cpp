@@ -184,7 +184,17 @@ void FmodServer::init(const Ref<FmodGeneralSettings>& p_settings) {
     ERROR_CHECK(coreSystem->getAdvancedSettings(&advancedSettings));
 
     advancedSettings.randomSeed = static_cast<unsigned int>(std::time(nullptr));// Use time as a seed
+    advancedSettings.maxMPEGCodecs = p_settings->get_per_codec_channel_count();
+    advancedSettings.maxADPCMCodecs = p_settings->get_per_codec_channel_count();
+    advancedSettings.maxXMACodecs = p_settings->get_per_codec_channel_count();
+    advancedSettings.maxVorbisCodecs = p_settings->get_per_codec_channel_count();
+    advancedSettings.maxAT9Codecs = p_settings->get_per_codec_channel_count();
+    advancedSettings.maxFADPCMCodecs = p_settings->get_per_codec_channel_count();
+    advancedSettings.maxOpusCodecs = p_settings->get_per_codec_channel_count();
+
     ERROR_CHECK(coreSystem->setAdvancedSettings(&advancedSettings));
+
+    ERROR_CHECK(coreSystem->setSoftwareChannels(p_settings->get_real_channel_count()));
 
     FMOD_STUDIO_INITFLAGS studio_init_flags = FMOD_STUDIO_INIT_NORMAL;
 

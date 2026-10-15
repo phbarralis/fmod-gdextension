@@ -12,6 +12,12 @@ namespace godot {
         void set_channel_count(const int p_channel_count);
         int get_channel_count() const;
 
+        void set_real_channel_count(const int p_real_channel_count);
+        int get_real_channel_count() const;
+
+        void set_per_codec_channel_count(const int p_per_codec_channel_count);
+        int get_per_codec_channel_count() const;
+
         void set_is_live_update_enabled(const bool p_enable_live_update);
         bool get_is_live_update_enabled() const;
 
@@ -31,6 +37,8 @@ namespace godot {
 
         static constexpr const char* INITIALIZE_BASE_PATH = "General";
         static constexpr const char* CHANNEL_COUNT_OPTION = "channel_count";
+        static constexpr const char* REAL_CHANNEL_COUNT_OPTION = "real_channel_count";
+        static constexpr const char* PER_CODEC_CHANNEL_COUNT_OPTION = "per_codec_channel_count";
         static constexpr const char* IS_LIVE_UPDATE_ENABLED_OPTION = "is_live_update_enabled";
         static constexpr const char* IS_LIVE_MEMORY_TRACKING_ENABLED_OPTION = "is_memory_tracking_enabled";
         static constexpr const char* DEFAULT_LISTENER_COUNT_OPTION = "default_listener_count";
@@ -38,6 +46,8 @@ namespace godot {
         static constexpr const char* SHOULD_LOAD_BY_NAME = "should_load_by_name";
 
         static constexpr const int DEFAULT_CHANNEL_COUNT = 1024;
+        static constexpr const int DEFAULT_REAL_CHANNEL_COUNT = 64;
+        static constexpr const int DEFAULT_PER_CODEC_CHANNEL_COUNT = 32;
         static constexpr const bool DEFAULT_IS_LIVEUPDATE = true;
         static constexpr const bool DEFAULT_IS_MEMORY_TRACKING = false;
         static constexpr const int DEFAULT_DEFAULT_LISTENER_COUNT = 1;
@@ -46,6 +56,8 @@ namespace godot {
 
     private:
         int _channel_count;
+        int _real_channel_count;
+        int _per_codec_channel_count;
         int _default_listener_count;
         bool _is_live_update_enabled;
         bool _is_memory_tracking_enabled;

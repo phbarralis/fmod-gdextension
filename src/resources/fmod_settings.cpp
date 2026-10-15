@@ -14,6 +14,22 @@ int FmodGeneralSettings::get_channel_count() const {
     return _channel_count;
 }
 
+void FmodGeneralSettings::set_real_channel_count(const int p_real_channel_count) {
+    _real_channel_count = p_real_channel_count;
+}
+
+int FmodGeneralSettings::get_real_channel_count() const {
+    return _real_channel_count;
+}
+
+void FmodGeneralSettings::set_per_codec_channel_count(const int p_per_codec_channel_count) {
+    _per_codec_channel_count = p_per_codec_channel_count;
+}
+
+int FmodGeneralSettings::get_per_codec_channel_count() const {
+    return _per_codec_channel_count;
+}
+
 void FmodGeneralSettings::set_is_live_update_enabled(const bool p_enable_live_update) {
     _is_live_update_enabled = p_enable_live_update;
 }
@@ -63,6 +79,12 @@ Ref<FmodGeneralSettings> FmodGeneralSettings::get_from_project_settings() {
     String channel_count_setting_path = vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, INITIALIZE_BASE_PATH, CHANNEL_COUNT_OPTION);
     settings->set_channel_count(project_settings->get_setting(channel_count_setting_path, DEFAULT_CHANNEL_COUNT));
 
+    String real_channel_count_setting_path = vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, INITIALIZE_BASE_PATH, REAL_CHANNEL_COUNT_OPTION);
+    settings->set_real_channel_count(project_settings->get_setting(real_channel_count_setting_path, DEFAULT_REAL_CHANNEL_COUNT));
+
+    String per_codec_channel_count_setting_path = vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, INITIALIZE_BASE_PATH, PER_CODEC_CHANNEL_COUNT_OPTION);
+    settings->set_per_codec_channel_count(project_settings->get_setting(per_codec_channel_count_setting_path, DEFAULT_PER_CODEC_CHANNEL_COUNT));
+
     String is_liveupdate_setting_path = vformat("%s/%s/%s", FMOD_SETTINGS_BASE_PATH, INITIALIZE_BASE_PATH, IS_LIVE_UPDATE_ENABLED_OPTION);
     settings->set_is_live_update_enabled(project_settings->get_setting(is_liveupdate_setting_path, DEFAULT_IS_LIVEUPDATE));
 
@@ -84,6 +106,12 @@ Ref<FmodGeneralSettings> FmodGeneralSettings::get_from_project_settings() {
 void FmodGeneralSettings::_bind_methods() {
     ClassDB::bind_method(D_METHOD("set_channel_count", "p_channel_count"), &FmodGeneralSettings::set_channel_count);
     ClassDB::bind_method(D_METHOD("get_channel_count"), &FmodGeneralSettings::get_channel_count);
+
+    ClassDB::bind_method(D_METHOD("set_real_channel_count", "p_real_channel_count"), &FmodGeneralSettings::set_real_channel_count);
+    ClassDB::bind_method(D_METHOD("get_real_channel_count"), &FmodGeneralSettings::get_real_channel_count);
+
+    ClassDB::bind_method(D_METHOD("set_per_codec_channel_count", "p_per_codec_channel_count"), &FmodGeneralSettings::set_per_codec_channel_count);
+    ClassDB::bind_method(D_METHOD("get_per_codec_channel_count"), &FmodGeneralSettings::get_per_codec_channel_count);
 
     ClassDB::bind_method(D_METHOD("set_is_live_update_enabled", "p_enable_live_update"), &FmodGeneralSettings::set_is_live_update_enabled);
     ClassDB::bind_method(D_METHOD("get_is_live_update_enabled"), &FmodGeneralSettings::get_is_live_update_enabled);
@@ -110,6 +138,30 @@ void FmodGeneralSettings::_bind_methods() {
       ),
       "set_channel_count",
       "get_channel_count"
+    );
+
+    ADD_PROPERTY(
+      PropertyInfo(
+        Variant::INT,
+        "real_channel_count",
+        PROPERTY_HINT_NONE,
+        "",
+        PROPERTY_USAGE_DEFAULT
+      ),
+      "set_real_channel_count",
+      "get_real_channel_count"
+    );
+
+    ADD_PROPERTY(
+      PropertyInfo(
+        Variant::INT,
+        "per_codec_channel_count",
+        PROPERTY_HINT_NONE,
+        "",
+        PROPERTY_USAGE_DEFAULT
+      ),
+      "set_per_codec_channel_count",
+      "get_per_codec_channel_count"
     );
 
     ADD_PROPERTY(
